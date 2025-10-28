@@ -1,157 +1,179 @@
 :root {
-    --background: #101014;
-    --primary-color: #1c1d20;
-    --secondary-color: #25262c;
-    --acentcolor: #ff0095;
-    --textcolor: #f9f9f9;
+  --background: #101014;
+  --primary-color: #1c1d20;
+  --secondary-color: #25262c;
+  --accent-color: #ff0095;
+  --text-color: #f9f9f9;
 }
 
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Background image */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Global styles */
 html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16pt;
-    color: var(--textcolor);
-   
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16pt;
+  color: var(--text-color);
 }
 
 body {
-    min-height: 100wh;
-    padding: 10px;
-   background-image: url('./img/wonyoung-ive-kpop-8k-wallpaper-uhdpaper.com-233@5@i.jpg');
-   background-size: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background: var(--background);
+  overflow-x: hidden;
 }
 
-ul {
-    list-style-type: none;
-}
-
+/* Title */
 h1 {
-    margin-top: 100px;
-    margin-bottom: 20px;
-    font-size: 3rem;
-    font-weight: 800;
-    text-align: center;
-    color: var(--acentcolor);
-    
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  text-align: center;
 }
 
+/* To-do wrapper */
 .wrapper {
-    transform: translateY(10px);
-    width: 700px;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center; 
+  width: 700px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1;
+}
+
+/* Input + button */
+form {
+  position: relative;
+  width: 100%;
 }
 
 #todo-input {
-    box-sizing: border-box;
-    padding: 13px 13px;
-    width: 100%;
-    background: none;
-    border: 3px solid #474747;
-    border-radius: 999px;
-    font: inherit;
-    color: #ffffff;
+  width: 100%;
+  padding: 13px 120px 13px 13px;
+  background: none;
+  border: 3px solid #474747;
+  border-radius: 999px;
+  color: #fff;
+  font: inherit;
 }
 
 #todo-input:focus {
-    outline: none;
-}
-
-form{
-    position: relative;
+  outline: none;
 }
 
 #add-todo {
-    position: absolute;
-    top: 0;
-    right: 0px;
-    background-color: var(--acentcolor);
-    height: 100%;
-    padding: 0 30px;
-    border: none;
-    border-radius: 100px;
-    font: inherit;
-    font-weight: 600;
-    color: var(--background);
-    cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 999px;
+  padding: 0 30px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--background);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#add-todo:hover {
+  opacity: 0.85;
+}
+
+/* To-do list */
+ul {
+  list-style: none;
 }
 
 .todo {
-    margin-bottom: 10px;
-    padding: 0 16px;
-    background-color: var(--primary-color);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
+  margin-bottom: 10px;
+  padding: 0 16px;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
 }
 
 .todo .todo-text {
-padding: 15px;
-    padding-bottom: 11px;
-    flex-grow: 1;
-    font-size: 25px;
+  padding: 15px 0;
+  flex-grow: 1;
+  font-size: 25px;
+  transition: color 0.3s ease;
 }
 
 .delete-button {
-    padding: 3px;
-    background: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: white;
-}
-.delete-button svg{
-transition: 200ms ease;
-}
-.delete-button:hover svg{
-    fill: #ff1414;
-}
-.custom-checkbox{
-    border: 2px solid var(--acentcolor);
-    border-radius: 50%; min-height: 20px;
-    min-width: 20px;
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-}
-input[type="checkbox"]:checked ~ .custom-checkbox{
-background-color: var(--acentcolor);
-
-}
-input[type="checkbox"]:checked ~ .todo-text{
-background-color: var(--secondary-color);
-text-decoration: 3px line-through;
-text-decoration-color: grey;
-color: grey;
-}
-input[type="checkbox"]{
-    display: none;
-}
-@media(max-width: 500px){
-    html{
-        font-size: 12pt; 
-
-    }
-    #add-button{
-        position: unset;
-        width: 100%; margin-top: 10px; padding: 15px; height: auto;
-    }
-    h1{
-        margin-top: 50px; font-size: 15vw;
-
-    }
+  padding: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
 }
 
+.delete-button:hover svg {
+  fill: #ff1414;
+}
+
+/* Checkbox styles */
+input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+  min-height: 20px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked ~ .custom-checkbox {
+  background-color: var(--accent-color);
+}
+
+input[type="checkbox"]:checked ~ .todo-text {
+  background-color: var(--secondary-color);
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  text-decoration-color: grey;
+  color: grey;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    margin-top: 4rem;
+  }
+
+  .wrapper {
+    width: 90%;
+  }
+
+  #todo-input {
+    font-size: 1rem;
+  }
+}
